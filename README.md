@@ -44,7 +44,7 @@ Plugin will try it's best to use your default browser. If it fails, or you want 
 provide browser executable through this option to your vimrc. Example for google-chrome:
 
 ```vimL
-let g:carbon_now_sh_browser = 'google-chrome'
+let g:ray_browser = 'google-chrome'
 ```
 
 ### Options
@@ -52,7 +52,7 @@ You can set the query string that will be passed to [https://ray.so](https://ray
 Example for setting font and line number:
 
 ```vimL
-let g:carbon_now_sh_options =
+let g:ray_options =
 \ {
 \ 'colors' : 'midnight',
 \ 'background' : 'true',
