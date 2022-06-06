@@ -18,14 +18,11 @@ let g:ray_base_url = get(g:, 'ray_base_url', 'https://ray.so/')
 command! -range=% Ray <line1>,<line2>call s:raySoBeautiful()
 
 function! s:raySoBeautiful() range
-  let l:text = s:urlEncode(base64#encodes:getVisualSelection())
+  let l:text = s:urlEncode(base64#encode(s:getVisualSelection()))
   let l:browser = s:getBrowser()
   let l:options = type(g:ray_options) == v:t_dict ? s:getOptions() : g:ray_options
    
   let l:url = g:ray_base_url .. '/?code=' .. l:text .. '&'.. l:options
-
-
-echom  escape(' ' .. l:url, '?&%')
 
   if has('win32') && l:browser ==? 'start' && &shell =~? '\<cmd\.exe$'
     return system(l:browser .. ' "" "' .. l:url .. '"')
@@ -122,4 +119,5 @@ function! s:getVisualSelection()
     return join(l:lines, "\n")
 
 endfunction 
+
 
