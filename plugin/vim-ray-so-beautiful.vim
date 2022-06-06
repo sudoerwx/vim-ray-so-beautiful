@@ -1,21 +1,21 @@
-if exists('g:carbon_now_sh_loaded')
+if exists('g:ray_loaded')
   finish
 endif
 
-let g:carbon_now_sh_loaded = 1
+let g:ray_loaded = 1
 
-let g:carbon_now_sh_options = get(g:, 'carbon_now_sh_options', {})
-let g:carbon_now_sh_browser = get(g:, 'carbon_now_sh_browser', '')
-let g:carbon_now_sh_base_url = get(g:, 'carbon_now_sh_base_url', 'https://carbon.now.sh')
+let g:ray_options = get(g:, 'ray_options', {})
+let g:ray_browser = get(g:, 'ray_browser', '')
+let g:ray_base_url = get(g:, 'ray_base_url', 'https://ray.so/')
 
-command! -range=% CarbonNowSh <line1>,<line2>call s:carbonNowSh()
+command! -range=% Ray <line1>,<line2>call s:raySoBeautiful()
 
-function! s:carbonNowSh() range
+function! s:raySoBeautiful() range
   let l:text = s:urlEncode(s:getVisualSelection())
   let l:browser = s:getBrowser()
-  let l:options = type(g:carbon_now_sh_options) == v:t_dict ? s:getOptions() : g:carbon_now_sh_options
-  let l:filetype = &filetype
-  let l:url = g:carbon_now_sh_base_url .. '/?l=' .. l:filetype .. '&code=' .. l:text .. '&' .. l:options
+  let l:options = type(g:ray_options) == v:t_dict ? s:getOptions() : g:ray_options
+   
+  let l:url = g:ray_base_url .. '/?code=' .. l:text .. '&'.. l:options
 
   if has('win32') && l:browser ==? 'start' && &shell =~? '\<cmd\.exe$'
     return system(l:browser .. ' "" "' .. l:url .. '"')
@@ -24,9 +24,9 @@ function! s:carbonNowSh() range
   call system(l:browser .. escape(' ' .. l:url, '?&%'))
 endfunction
 
-function! s:getBrowser() "{{{
-  if g:carbon_now_sh_browser !=? ''
-    return g:carbon_now_sh_browser
+function! s:getBrowser() 
+  if g:ray_browser !=? ''
+    return g:ray_browser
   endif
 
   if executable('xdg-open')
@@ -50,18 +50,18 @@ function! s:getBrowser() "{{{
   endif
 
   throw 'Browser not found'
-endfunction "}}}
+endfunction 
 
-function! s:getOptions() "{{{
-  let l:options = g:carbon_now_sh_options
+function! s:getOptions() 
+  let l:options = g:ray_options
   let l:result = ''
   for l:key in keys(l:options)
     let l:result = l:result .. '&' .. s:urlEncode(l:key) .. '=' .. s:urlEncode(l:options[key])
   endfor
   return l:result[1:]
-endfunction "}}}
+endfunction 
 
-function! s:urlEncode(string) "{{{
+function! s:urlEncode(string) 
   let l:result = ''
 
   let l:characters = split(a:string, '.\zs')
@@ -80,9 +80,9 @@ function! s:urlEncode(string) "{{{
   endfor
 
   return l:result
-endfunction "}}}
+endfunction 
 
-function! s:characterRequiresUrlEncoding(character) "{{{
+function! s:characterRequiresUrlEncoding(character) 
     let l:ascii_code = char2nr(a:character)
 
     if l:ascii_code >= 48 && l:ascii_code <= 57
@@ -96,9 +96,9 @@ function! s:characterRequiresUrlEncoding(character) "{{{
     endif
 
     return 1
-endfunction "}}}
+endfunction 
 
-function! s:getVisualSelection() "{{{
+function! s:getVisualSelection() 
     let [l:line_start, l:column_start] = getpos("'<")[1:2]
     let [l:line_end, l:column_end] = getpos("'>")[1:2]
     let l:lines = getline(l:line_start, l:line_end)
@@ -112,6 +112,4 @@ function! s:getVisualSelection() "{{{
 
     return join(l:lines, "\n")
 
-endfunction "}}}
-
-" vim:foldenable:foldmethod=marker:sw=2
+endfunction 

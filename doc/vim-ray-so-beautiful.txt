@@ -1,0 +1,58 @@
+*vim-ray-so-beautiful.txt*    Open selected text in https://ray.so/
+
+        Open selected text in https://ray.so/
+
+License: MIT
+
+vim-ray			    *vim-ray*
+
+1. Introduction				    |vim-ray-introduction|
+2. Install				    |vim-ray-install|
+3. Commands				    |vim-ray-commands|
+4. Settings				    |vim-ray-settings|
+
+==============================================================================
+1. Introduction					*vim-ray-introduction*
+
+(n)vim implementation plugin for opening selected content in https://ray.so/
+
+==============================================================================
+2. Install					*vim-ray-install*
+
+Install with `Plug`
+`Plug 's-u-d-o-e-r/vim-ray-so-beautiful'`
+
+Add mapping:
+`vnoremap <F5> :Ray`
+
+==============================================================================
+3. Commands					*vim-ray-commands*
+
+Ray						      *:Ray*
+		Used for sending selected text to https://ray.so/
+
+		`:Ray`
+
+==============================================================================
+4. Settings					*vim-ray-settings*
+
+					      *g:ray_options*
+g:ray_options
+		Options passed as query string when opening
+		https://ray.so/. Must not contain `?`.
+
+		Default value: `{}`
+
+g:ray_base_url
+		Protocol, host name, and port for the carbon.now.sh 
+		instance to send code snippets to.  Note: no trailing slash.
+
+		Default value: 'https://ray.so/'
+
+g:ray_browser
+		Browser used to open url. If nothing is set, it tries to
+		detect default browser by operating system.
+
+		Default value: ''
+
+==============================================================================
