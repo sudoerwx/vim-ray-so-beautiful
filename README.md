@@ -9,7 +9,7 @@
 Add the following line to your `.vimrc`
 
 ```vimL
-Plugin 's-u-d-o-e-r/vim-ray-so-beautiful'
+Plugin 'sudoerwx/vim-ray-so-beautiful'
 ```
 
 Then run the following in Vim:
