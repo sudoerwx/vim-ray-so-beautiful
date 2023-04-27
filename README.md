@@ -54,7 +54,7 @@ Example for setting font and line number:
 ```vimL
 let g:ray_options =
 \ {
-\ 'colors' : 'midnight',
+\ 'theme' : 'midnight',
 \ 'background' : 'true',
 \ 'darkMode' : 'true',
 \ 'padding' : '64',
