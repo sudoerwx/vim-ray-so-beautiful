@@ -5,7 +5,7 @@ endif
 let g:ray_loaded = 1
 
 let g:ray_options = get(g:, 'ray_options', {
-      \ 'colors' : 'midnight',
+      \ 'theme' : 'midnight',
       \ 'background' : 'true',
       \ 'darkMode' : 'true',
       \ 'padding' : '64',
@@ -22,7 +22,7 @@ function! s:raySoBeautiful() range
   let l:browser = s:getBrowser()
   let l:options = type(g:ray_options) == v:t_dict ? s:getOptions() : g:ray_options
    
-  let l:url = g:ray_base_url .. '/?code=' .. l:text .. '&'.. l:options
+  let l:url = g:ray_base_url .. '/#code=' .. l:text .. '&'.. l:options
 
   if has('win32') && l:browser ==? 'start' && &shell =~? '\<cmd\.exe$'
     return system(l:browser .. ' "" "' .. l:url .. '"')
